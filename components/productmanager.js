@@ -1,6 +1,9 @@
+const Module = require('module');
+
 const fs = require('fs').promises;
 
 class ProductManager {
+  
   constructor(path) {
     this.path = path;
     this.products = [];
@@ -11,7 +14,7 @@ class ProductManager {
       this.addInitialProducts();
     }
   }
-
+  
   async loadProducts() {
     try {
       const data = await fs.readFile(this.path, 'utf-8');
@@ -68,7 +71,7 @@ class ProductManager {
       description: "Descripción del producto 1",
       price: 100,
       thumbnail: "ruta/imagen1.jpg",
-      code: "abc123",
+      code: "abc121",
       stock: 10
     });
 
@@ -77,14 +80,54 @@ class ProductManager {
       description: "Descripción del producto 2",
       price: 200,
       thumbnail: "ruta/imagen2.jpg",
+      code: "abc122",
+      stock: 15
+    });
+    await this.addProduct({
+      title: "Producto 3",
+      description: "Descripción del producto 3",
+      price: 300,
+      thumbnail: "ruta/imagen3.jpg",
+      code: "abc123",
+      stock: 20
+    });
+    await this.addProduct({
+      title: "Producto 4",
+      description: "Descripción del producto 4",
+      price: 400,
+      thumbnail: "ruta/imagen4.jpg",
       code: "abc124",
-      stock: 5
+      stock: 25
+    });
+    await this.addProduct({
+      title: "Producto 5",
+      description: "Descripción del producto 5",
+      price: 500,
+      thumbnail: "ruta/imagen5.jpg",
+      code: "abc125",
+      stock: 30
+    });
+    await this.addProduct({
+      title: "Producto 6",
+      description: "Descripción del producto 6",
+      price: 600,
+      thumbnail: "ruta/imagen6.jpg",
+      code: "abc126",
+      stock: 35
+    });
+    await this.addProduct({
+      title: "Producto 7",
+      description: "Descripción del producto 7",
+      price: 700,
+      thumbnail: "ruta/imagen7.jpg",
+      code: "abc127",
+      stock: 40
     });
   }
 }
 
 (async () => {
-  const productManager = new ProductManager('productos.json');
+  const productManager = new ProductManager('./productos.json');
 
   console.log("Lista de productos:", await productManager.getProducts());
   console.log("Producto con ID 1:", await productManager.getProductById(1));
@@ -92,6 +135,10 @@ class ProductManager {
   const updateResult = await productManager.updateProduct(1, { price: 180, stock: 18 });
   console.log("Producto actualizado:", updateResult ? "Éxito" : "Fallo");
 
-  const deleteResult = await productManager.deleteProduct(2);
+  const deleteResult = await productManager.deleteProduct(9);
   console.log("Producto eliminado:", deleteResult ? "Éxito" : "Fallo");
 })();
+
+module.exports = ProductManager;
+
+
