@@ -135,7 +135,7 @@ class ProductManager {
   const updateResult = await productManager.updateProduct(1, { price: 180, stock: 18 });
   console.log("Producto actualizado:", updateResult ? "Éxito" : "Fallo");
 
-  const deleteResult = await productManager.deleteProduct(9);
+  const deleteResult = await productManager.deleteProduct(3);
   console.log("Producto eliminado:", deleteResult ? "Éxito" : "Fallo");
 })();
 
